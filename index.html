@@ -15,7 +15,36 @@
         <h1>Bug/Issue Tracker<small> by dDobrev</small></h1>
         <small>Created with JavaScript, Bootstrap 4 and jQuery</small>
     </div>
+    <div class="jumbotron">
+        <h3>Add New Issue:</h3>
+        <form id="issueInputForm">
+            <div class="form-group">
+                <label for="issueDescInput">Description</label>
+                <input type="text" class="form-control" id="issueDescInput" placeholder="Describe the issue ...">
+            </div>
+            <div class="form-group">
+                <label for="issueSeverityInput">Severity</label>
+                <select id="issueSeverityInput" class="form-control">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="issueAssignedToInput">Assigned To</label>
+                <input type="text" class="form-control" id="issueAssignedToInput" placeholder="Enter responsible team ...">
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
 
+    <div class="col-lg-12">
+        <div id="issuesList">
+        </div>
+        <div class="footer">
+            <p>&copy; dDobrev</p>
+        </div>        
+    </div>
 
     <!-- Used to generate global unit identifier for each of the issues -->
     <script src="https://chancejs.com/chance.min.js"></script>
