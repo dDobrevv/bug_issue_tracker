@@ -21,8 +21,23 @@ function saveIssue(e) {
         var issues = [];
         issues.push(issue);
         localStorage.setItem('issues', JSON.stringify(issues));
+    } else {
+        var issues = JSON.parse(localStorage.getItem("issues"));
+        issues.push(issue);
+        localStorage.setItem('issues', JSON.stringify(issues));
     }
+
+    // Reseting input elements
+    document.getElementById("issueInputForm").reset();
+
+    // New element for localStorage
+    fetchIssues();
+
+    // Preventing to submitting
+    e.preventDefault();
 }
+
+    
 
 // Fetching the list of issues that already available. Using browser local storage.
 function fetchIssues() {
@@ -38,15 +53,26 @@ function fetchIssues() {
         var assignedTo = issues[i].assignedTo;
         var status = issues[i].status;
         
-        issuesLists.innerHTML += '<div class="well">' + 
-        '<h6>Issue ID: ' + id + '</h6>' + 
-        '<p><span class="label label-info">' + status + 
-        '</span></p>' + '<h3>' + desc + '</h3>' + 
-        '<p><span class="glyphicon glyphicon-time"></span>' + 
-        severity + '</p>' + '<p><span class="glyphicon glyphicon-user"></span>' + 
-        assignedTo + '</p' + '<a href="#" onClick="setStatusClosed(\''+id+'\')" class="btn btn-warning">Close</a>' +
-        '<a href="#" onClick="deleteIssue(\''+id+'\')" class="btn btn-danger">Delete</a>' + 
-        '</div';
+        issuesLists.innerHTML
+        += '<div class="well">' 
+        + '<h6>Issue ID: ' 
+        + id 
+        + '</h6>' 
+        + '<p><span class="label label-info">' 
+        + status 
+        + '</span></p>' 
+        + '<h3>' 
+        + desc 
+        + '</h3>' 
+        + '<p><span class="glyphicon glyphicon-time"></span> ' 
+        + severity 
+        + '</p>' 
+        + '<p><span class="glyphicon glyphicon-user"></span> ' 
+        + assignedTo 
+        + '</p>' 
+        + '<a href="#" onClick="setStatusClosed(\''+id+'\')" class="btn btn-warning">Close</a> ' 
+        + '<a href="#" onClick="deleteIssue(\''+id+'\')" class="btn btn-danger">Delete</a>' 
+        + '</div';  
     }
 }
 
