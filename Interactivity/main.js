@@ -37,7 +37,37 @@ function saveIssue(e) {
     e.preventDefault();
 }
 
-    
+// Event set to close method
+function setStatusClosed(id) {
+    // Retrive from localStorage
+    var issues = JSON.parse(localStorage.getItem('issues'));
+
+    for (var i = 0; i < issues.length; i++) {
+        if (issues[i].id == id) {
+            issues[i].status = 'Closed';
+        }
+    }
+
+    localStorage.setItem('issues', JSON.stringify(issues));
+
+    fetchIssues();
+}
+
+// Event handler Delete
+function deleteIssue(id) {
+    // Retrive from localStorage
+    var issues = JSON.parse(localStorage.getItem('issues'));
+
+    for (var i = 0; i < issues.length; i++) {
+        if (issues[i].id == id) {
+            issues.splice(i, 1);
+        }
+    }
+
+    localStorage.setItem('issues', JSON.stringify(issues));
+
+    fetchIssues();
+}
 
 // Fetching the list of issues that already available. Using browser local storage.
 function fetchIssues() {
